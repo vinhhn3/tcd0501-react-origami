@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
-import logo from "../../src/img/blue-origami-bird.png";
-import Posts from "../components/posts/Posts";
-import OrigamiContext from "../../src/context/origami/origamiContext";
 import { useHistory } from "react-router-dom";
+import Posts from "../../../components/posts/Posts";
+import OrigamiContext from "../../../context/origami/origamiContext";
+import logo from "../../../img/blue-origami-bird.png";
 
 const Profile = () => {
   const origamiContext = useContext(OrigamiContext);

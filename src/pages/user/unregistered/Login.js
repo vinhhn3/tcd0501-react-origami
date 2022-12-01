@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
-import OrigamiContext from "../../src/context/origami/origamiContext";
 import { useHistory } from "react-router-dom";
+import OrigamiContext from "../../../context/origami/origamiContext";
 
 const Login = () => {
   const origamiContext = useContext(OrigamiContext);

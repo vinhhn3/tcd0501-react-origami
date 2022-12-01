@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
-import { Route, Switch, Redirect } from "react-router-dom";
-import Main from "./Main";
-import Register from "./Register";
-import Profile from "./Profile";
-import Login from "./Login";
-import Share from "./Share";
-import NotFound from "./NotFound";
-import OrigamiContext from "../../src/context/origami/origamiContext";
+import { Redirect, Route, Switch } from "react-router-dom";
+import OrigamiContext from "../context/origami/origamiContext";
+import NotFound from "../pages/error/NotFound";
+import Profile from "../pages/user/registered/Profile";
+import Share from "../pages/user/registered/Share";
+import Login from "../pages/user/unregistered/Login";
+import Main from "../pages/user/unregistered/Main";
+import Register from "../pages/user/unregistered/Register";
 
 const Home = () => {
   const origamiContext = useContext(OrigamiContext);

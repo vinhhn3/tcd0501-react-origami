@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
-import Posts from "../components/posts/Posts";
-import OrigamiContext from "../../src/context/origami/origamiContext";
+import Posts from "../../../components/posts/Posts";
+import OrigamiContext from "../../../context/origami/origamiContext";
 
 const Main = () => {
   const origamiContext = useContext(OrigamiContext);

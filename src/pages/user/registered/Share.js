@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
-import Posts from "../components/posts/Posts";
 import { useHistory } from "react-router-dom";
-import OrigamiContext from "../../src/context/origami/origamiContext";
+import Posts from "../../../components/posts/Posts";
+import OrigamiContext from "../../../context/origami/origamiContext";
 
 const Share = () => {
   const origamiContext = useContext(OrigamiContext);

@@ -1,11 +1,11 @@
-import "./App.css";
-import Footer from "./pages/Footer";
 import React from "react";
-import Aside from "./pages/Aside";
 import { BrowserRouter as Router } from "react-router-dom";
+import "./App.css";
 import OrigamiState from "./context/origami/OrigamiState";
-import Home from "./pages/Home";
-import Navbar from "./pages/Navbar";
+import Aside from "./layout/Aside";
+import Footer from "./layout/Footer";
+import Home from "./layout/Home";
+import Navbar from "./layout/Navbar";
 
 function App() {
   return (
