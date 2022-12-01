@@ -10,11 +10,9 @@ const Share = () => {
   const [text, setText] = useState("");
   const onChange = (e) => {
     setText(e.target.value);
-    console.log(text);
   };
 
   const onSubmit = (e) => {
-    console.log(text);
     submitPost(text);
     setText("");
   };
@@ -34,7 +32,7 @@ const Share = () => {
         </div>
         <div>
           <h2>Last 3 post on your wall</h2>
-          <Posts posts={privatePosts} />
+          <Posts posts={privatePosts.slice(-3).reverse()} />
           <button onClick={onLogout}>Logout</button>
         </div>
       </div>

@@ -4,9 +4,10 @@ import OrigamiContext from "../../../context/origami/origamiContext";
 
 const Main = () => {
   const origamiContext = useContext(OrigamiContext);
-  const { publicPosts } = origamiContext;
-  useEffect(async () => {
-    origamiContext.getPublicPosts();
+  const { publicPosts, getPublicPosts } = origamiContext;
+  useEffect(() => {
+    getPublicPosts();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <>

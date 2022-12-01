@@ -18,7 +18,6 @@ const Register = () => {
       ...prevState,
       [name]: value,
     }));
-    console.log(registerInput);
   };
 
   const handleSubmit = async (e) => {
@@ -26,7 +25,6 @@ const Register = () => {
     if (registerInput.password !== registerInput.re_password) {
       alert("Passwords don't match");
     } else {
-      console.log(registerInput);
       await registerUser(registerInput);
       history.push("/profile");
     }

@@ -19,7 +19,7 @@ const Profile = () => {
     <>
       <div className="Main">
         <div className="Profile">
-          <img src={logo} />
+          <img src={logo} alt="logo" />
           <div className="personal-info">
             <p>
               <span>Email:</span>
@@ -32,7 +32,7 @@ const Profile = () => {
           </div>
           <div>
             <h2>3 of your recent posts</h2>
-            <Posts posts={privatePosts} />
+            <Posts posts={privatePosts.slice(-3).reverse()} />
             <button onClick={onLogout}>Logout</button>
           </div>
         </div>

@@ -17,7 +17,6 @@ const Login = () => {
       ...prevState,
       [name]: value,
     }));
-    console.log(login);
   };
 
   const onSubmit = async (e) => {

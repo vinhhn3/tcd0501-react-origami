@@ -1,13 +1,20 @@
-import OrigamiContext from "./origamiContext";
-import OrigamiReducer from "./origamiReducer";
-import { useReducer } from "react";
-import axios from "axios";
+import { useEffect, useReducer } from "react";
 import {
-  USER_LOGIN,
-  USER_LOGOUT,
+  createPost,
+  getOrigamiPrivatePosts,
+  getOrigamiPublicPosts,
+  loginOrigamiUser,
+  logoutOrigamiUser,
+  registerOrigamiUser,
+} from "../../api/OrigamiApi";
+import {
   GET_ALL_POSTS,
   GET_PRIVATE_POSTS,
+  USER_LOGIN,
+  USER_LOGOUT,
 } from "../types";
+import OrigamiContext from "./origamiContext";
+import OrigamiReducer from "./origamiReducer";
 
 const OrigamiState = (props) => {
   const initialState = {
@@ -34,14 +41,17 @@ const OrigamiState = (props) => {
     ],
   };
 
-  const [state, dispatch] = useReducer(OrigamiReducer, initialState);
+  const [state, dispatch] = useReducer(OrigamiReducer, initialState, () => {
+    const localState = localStorage.getItem("localState");
+    return localState ? JSON.parse(localState) : initialState;
+  });
+
+  useEffect(() => {
+    localStorage.setItem("localState", JSON.stringify(state));
+  }, [state]);
 
   const loginUser = async (login) => {
-    const response = await axios.post(
-      "http://localhost:9999/api/user/login",
-      login,
-      { withCredentials: true }
-    );
+    const response = await loginOrigamiUser(login);
     if (response.status === 200) {
       await getPrivatePosts();
       dispatch({
@@ -52,10 +62,7 @@ const OrigamiState = (props) => {
   };
 
   const getPrivatePosts = async () => {
-    const response = await axios.get(
-      "http://localhost:9999/api/origami/mine?limit=3",
-      { withCredentials: true }
-    );
+    const response = await getOrigamiPrivatePosts();
     dispatch({
       type: GET_PRIVATE_POSTS,
       payload: response.data,
@@ -63,14 +70,8 @@ const OrigamiState = (props) => {
   };
 
   const logoutUser = async () => {
-    const response = await axios.post(
-      "http://localhost:9999/api/user/logout",
-      null,
-      {
-        withCredentials: true,
-      }
-    );
-
+    const response = await logoutOrigamiUser();
+    console.log(response);
     if (response.status === 200) {
       dispatch({
         type: USER_LOGOUT,
@@ -79,9 +80,7 @@ const OrigamiState = (props) => {
   };
 
   const getPublicPosts = async () => {
-    const posts = await axios.get(
-      "http://localhost:9999/api/origami/all?limit=5"
-    );
+    const posts = await getOrigamiPublicPosts();
     dispatch({
       type: GET_ALL_POSTS,
       payload: posts.data,
@@ -89,24 +88,14 @@ const OrigamiState = (props) => {
   };
 
   const submitPost = async (text) => {
-    const response = await axios.post(
-      "http://localhost:9999/api/origami",
-      { description: text },
-      { withCredentials: true }
-    );
-
-    console.log(response);
+    const response = await createPost(text);
     if (response.status === 200) {
       await getPrivatePosts();
     }
   };
 
   const registerUser = async (user) => {
-    const response = await axios.post(
-      "http://localhost:9999/api/user/register",
-      user,
-      { withCredentials: true }
-    );
+    const response = await registerOrigamiUser(user);
     if (response.status === 200) {
       await loginUser({ username: user.username, password: user.password });
     }

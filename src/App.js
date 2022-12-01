@@ -7,7 +7,7 @@ import Footer from "./layout/Footer";
 import Home from "./layout/Home";
 import Navbar from "./layout/Navbar";
 
-function App() {
+const App = () => {
   return (
     <OrigamiState>
       <Router>
@@ -22,6 +22,6 @@ function App() {
       </Router>
     </OrigamiState>
   );
-}
+};
 
 export default App;
